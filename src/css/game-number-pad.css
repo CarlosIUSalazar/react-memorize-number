@@ -1,0 +1,73 @@
+
+
+.number-display-input {
+  margin: 30px 0px;
+  justify-content:center;
+  border: 1px solid #646464;
+  border-radius: 5px;
+  font-size: xx-large;
+  padding: 5px 10px;
+  outline: none;
+  width: auto;
+  color:#464646;
+  text-align: center;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.number-buttons {
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  row-gap: 5px;
+  column-gap: 40px;
+  justify-content:center;
+}
+
+button.number-buttons__{
+  width: 80px;
+  height: 80px;
+  border:none;
+  border:solid 2.5px #FDA7AE;
+  border-radius: 5px;
+  background: rgba(255, 255, 255,0);
+  font-size: 30px;
+  color: #747374;
+}
+
+button.number-buttons__:hover {
+  background:#FDA7AE;
+  color:white; 
+}
+
+button.number-buttons__backspace{
+  width: 80px;
+  height: 80px;
+  border:none;
+  border:solid 2.5px #FDA7AE;
+  border-radius: 5px;
+  background: rgba(206, 189, 2, 0.5);
+  font-size: 30px;
+  color: #747374;
+}
+
+button.number-buttons__backspace:hover {
+  background:rgba(206, 189, 2, 1);
+  color:white; 
+}
+
+button.number-buttons__ok{
+  width: 80px;
+  height: 80px;
+  border:none;
+  border:solid 2.5px #FDA7AE;
+  border-radius: 5px;
+  background: rgba(0, 111, 0, 0.5);
+  font-size: 30px;
+  color: #747374;
+}
+
+button.number-buttons__ok:hover {
+  background:rgba(0, 111, 0, 0.7);
+  color:white; 
+}
