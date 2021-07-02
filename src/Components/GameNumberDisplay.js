@@ -30,10 +30,14 @@ export default function GameNumberDisplay({randomNumberArray, hideNumbersAndDisp
       setHidden(false);
       rotateNumbers();
       return () => {
-        clearInterval(interval);
-        clearTimeout(timeout);
+        // clearInterval(interval);
+        // clearTimeout(timeout);
       };
     }, 2500);
+
+    setTimeout(() => {
+      setHidden(true);
+    }, 2000);
   }, [rotateNumbers]);
   return (
     <>
