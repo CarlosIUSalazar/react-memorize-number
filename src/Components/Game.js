@@ -3,19 +3,17 @@ import GameNumberDisplay from './GameNumberDisplay';
 import GameNumberPad from './GameNumberPad';
 
 export default function Game() {
-  //const [score, setScore]= useState(0)
-  //const [randomNumberDisplay, setRandomNumberDisplay] = useState('')
   const [showNumbers, setShowNumbers] = useState(false);
   const [startButtonShow, setStartButtonShow] = useState(true)
   const [showNumberPad, setShowNumberPad] = useState(false)
   let [score, setScore] = useState(0)
   let [rounds, setRounds] = useState(0)
 
+  let amountOfNumbersToDisplay = useRef(3)
   let randomNumberArray = useRef([])
-  //let userAnswerArray = []
   
   useEffect(() => {
-    randomNumberArray.current = randomizeArray(4)
+    randomNumberArray.current = randomizeArray(amountOfNumbersToDisplay.current)
     console.log("use effect game", randomNumberArray.current)
     return () => {
       // clearInterval(interval);
@@ -24,8 +22,14 @@ export default function Game() {
   },[])
 
 
-const hideStartButtonAndStartDisplayNumbers = () => {
+console.log("Amount of numbers to display", amountOfNumbersToDisplay.current)
+const increaseRoundsCounter = () => {
+  setRounds(rounds = rounds + 1)
+}
+
+const handleStartButton = () => {
   //randomNumberArray = randomizeArray(4)
+  increaseRoundsCounter()
   setShowNumbers(true)
   setStartButtonShow(false)
   //console.log("In gamee",randomNumberArray)
@@ -35,6 +39,11 @@ const hideNumbersAndDisplayPad = () => {
   setShowNumbers(false)
   setShowNumberPad(true)
 }
+
+// const showNumbersAndHideNumberPad = () => {
+//   setShowNumbers(true)
+//   setShowNumberPad(false)
+// }
 
   const randomizeArray = (arrayLength) => {
     //Generates an random number array of length arrayLength 
@@ -59,6 +68,7 @@ const hideNumbersAndDisplayPad = () => {
 
 
   const handleOkButton = (userInputNumber) => {
+    //The OK button will assert right or wrong answer and will start a new round
     console.log("userInputNumber from component", userInputNumber)
     let answerArrayString = userInputNumber.split('')
     let answerArrayInt = []
@@ -73,6 +83,12 @@ const hideNumbersAndDisplayPad = () => {
       console.log("Correct!")
       setScore(score = score + 1)
     };
+    amountOfNumbersToDisplay.current++;
+    randomNumberArray.current = randomizeArray(amountOfNumbersToDisplay.current);
+    setRounds(rounds = rounds + 1);
+    setShowNumbers(true)
+    setShowNumberPad(false)
+
   }
 
   const restartGame = () => {
@@ -89,7 +105,9 @@ const hideNumbersAndDisplayPad = () => {
       <div className = "total-rounds">Total Rounds: { rounds }</div>
       </div>
       <div className="start-button-container">
-        {startButtonShow && <button className="show-numbers-btn" onClick={()=> hideStartButtonAndStartDisplayNumbers()}>Show Numbers!</button>}
+        {startButtonShow && <button className="show-numbers-btn" onClick={()=> handleStartButton()}>Show Numbers</button>}
+      </div>
+      <div className="number-display-and-number-pad-container">
         {showNumbers && <GameNumberDisplay randomNumberArray={randomNumberArray.current} hideNumbersAndDisplayPad={hideNumbersAndDisplayPad}/>}
       {showNumberPad && <GameNumberPad handleOkButton={handleOkButton}/>}
       </div>

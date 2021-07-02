@@ -3,29 +3,29 @@ import { useCallback, useEffect, useState } from "react";
 let timeout;
 let interval;
 
-export default function GameNumberDisplay({randomNumberArray,hideNumbersAndDisplayPad}) {
+export default function GameNumberDisplay({randomNumberArray, hideNumbersAndDisplayPad}) {
   const [n, setN] = useState(0);
   const [hidden, setHidden] = useState(false);
   const rotateNumbers = useCallback(() => {
     setN((prevN) => {
       let nextN = prevN + 1;
-
+      
       if (nextN >= randomNumberArray.length) {
         nextN = 0;
         //randomNumberArray = []
-        clearInterval(interval);
-        clearTimeout(timeout);
+        // clearInterval(interval);
+        // clearTimeout(timeout);
         hideNumbersAndDisplayPad()
       }
       return nextN;
     });
     setTimeout(() => {
       setHidden(true);
-    }, 1800);
+    }, 2000);
   }, []);
 
   useEffect(() => {
-    console.log("randomNumberArray in Component", randomNumberArray)
+    console.log("randomNumberArray in Number display Component", randomNumberArray)
     interval = setInterval(() => {
       setHidden(false);
       rotateNumbers();
@@ -33,7 +33,7 @@ export default function GameNumberDisplay({randomNumberArray,hideNumbersAndDispl
         clearInterval(interval);
         clearTimeout(timeout);
       };
-    }, 3000);
+    }, 2500);
   }, [rotateNumbers]);
   return (
     <>

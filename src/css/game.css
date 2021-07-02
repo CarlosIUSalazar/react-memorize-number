@@ -24,13 +24,9 @@ button.restart-button:hover {
   color:white; 
 }
 
-.start-button-container {
-  margin: 30px, 0px;
-  padding: 30px, 0px;
-}
-
 
 button.show-numbers-btn{
+  margin-top: 120px;
   width: 200px;
   height: 75px;
   border:none;
